@@ -16,9 +16,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install system dependencies
         run: sudo apt-get update && sudo apt-get install -y libxcb1-dev libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev
+
+      - name: Install Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          source $HOME/.cargo/env
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
       - name: Build
         run: cargo build --verbose
+
       - name: Run tests
         run: cargo test --verbose
+
+      - name: Upload Release Asset
+        if: ${{ github.event_name == 'release' }}
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./target/release/translate-cli  # Dosya yolu, uygun şekilde güncellenmeli
+          asset_name: translate-cli
+          asset_content_type: application/octet-stream
