@@ -26,11 +26,14 @@ jobs:
           source $HOME/.cargo/env
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Build
+      - name: Build (Debug)
         run: cargo build --verbose
 
       - name: Run tests
         run: cargo test --verbose
+
+      - name: Build release binary
+        run: cargo build --release
 
       - name: Upload Release Asset
         if: ${{ github.event_name == 'release' }}
