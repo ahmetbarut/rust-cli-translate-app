@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 set -e
 
 # Uygulama versiyonu ve indirme URL'si (kendi GitHub deposunuza göre düzenleyin)
