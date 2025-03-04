@@ -11,7 +11,7 @@ Translate-cli is a simple command-line application for translating texts. This d
 The easiest way to install is using our installer script:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/ahmetbarut/rust-cli-translate-app/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/ahmetbarut/rust-cli-translate-app/refs/heads/master/install.sh | bash
 ```
 
 This script will automatically download the latest version, make it executable, and place it in your `$HOME/bin` directory.
